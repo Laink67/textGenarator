@@ -1,4 +1,16 @@
-import train
+import pickle
 
-text = 'Сегодня 45 я расскажу 22 о таком типе данных, как словари, о работе со словарями, операциях над ними, методах, о генераторах словарей.'
-print(train.train('', ''))
+from train import Train
+
+model = Train()
+model.fit('anna-karenina.txt')
+
+filename = 'text_model.pkl'
+
+# Save model
+pickle.dump(model, open(filename, 'wb'))
+
+# Load model
+loaded_model = pickle.load(open(filename, 'rb'))
+
+print(loaded_model.gen_text('о', 13))
